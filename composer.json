@@ -11,5 +11,7 @@
     "autoload": {
         "psr-4": { "OwlyCode\\NeuralEvolution\\": "src" }
     },
-    "require": {}
+    "require": {
+        "alom/graphviz": "~1.1"
+    }
 }

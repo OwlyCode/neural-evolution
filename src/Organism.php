@@ -63,6 +63,16 @@ class Organism
         return $clone;
     }
 
+    public function getInputNeurons()
+    {
+        return $this->inputs;
+    }
+
+    public function getOutputNeurons()
+    {
+        return $this->outputs;
+    }
+
     public function getHiddenNeurons()
     {
         return $this->hidden;

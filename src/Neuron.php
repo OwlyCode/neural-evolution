@@ -45,6 +45,11 @@ class Neuron
         ];
     }
 
+    public function getInputs()
+    {
+        return $this->inputs;
+    }
+
     public function hasInputs()
     {
         return count($this->inputs) > 0;

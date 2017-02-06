@@ -9,6 +9,7 @@ use OwlyCode\NeuralEvolution\Neuron;
 use OwlyCode\NeuralEvolution\Organism;
 use OwlyCode\NeuralEvolution\Specy;
 use OwlyCode\NeuralEvolution\Trial\AndTrial;
+use OwlyCode\NeuralEvolution\Trial\XorTrial;
 
 $specy = new Specy(new Organism(
     [new InputNeuron(), new InputNeuron()],
@@ -17,7 +18,7 @@ $specy = new Specy(new Organism(
     echo sprintf("Generation %d... current score : %d\n", $generation, $score);
 });
 
-$organism = $specy->evolve(new AndTrial());
+$organism = $specy->evolve(new XorTrial());
 
 echo "\n\nWe got a winner !\n";
 echo "1, 1 => " . $organism->stimulate([1, 1])[0] . "\n";
@@ -25,4 +26,5 @@ echo "1, 0 => " . $organism->stimulate([1, 0])[0] . "\n";
 echo "0, 1 => " . $organism->stimulate([0, 1])[0] . "\n";
 echo "0, 0 => " . $organism->stimulate([0, 0])[0] . "\n\n";
 
-echo "Winner genome : " . base64_encode(json_encode($organism->export()));
+echo "Winner genome : " . base64_encode(json_encode($organism->export())) . "\n\n";
+echo "Preview it with bin/gen2graph <genome> <name>";

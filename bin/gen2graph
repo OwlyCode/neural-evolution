@@ -1,0 +1,75 @@
+#!/usr/bin/env php
+
+<?php
+
+use OwlyCode\NeuralEvolution\Importer;
+
+include 'vendor/autoload.php';
+
+$genome = $argv[1] ?? null;
+$name = $argv[2] ?? 'untitled';
+
+if (!$genome) {
+    echo "No genome provided.";
+    exit(1);
+}
+
+$importer = new Importer();
+$organism = $importer->import(json_decode(base64_decode($genome), true));
+
+$graph = new Alom\Graphviz\Digraph('O');
+
+$graph->set('rankdir', 'LR');
+
+$inputCount = 0;
+
+$subGraph = $graph->subgraph('inputs');
+$subGraph->set('rank', 'same');
+
+foreach ($organism->getInputNeurons() as $neuron) {
+    $subGraph->node($neuron->getName(), [
+        'label' => sprintf('Input %d ', ++$inputCount),
+        'shape' => 'box'
+    ]);
+}
+
+$hiddenCount = 0;
+
+foreach ($organism->getHiddenNeurons() as $neuron) {
+    $graph->node($neuron->getName(), [
+        'label' => sprintf('Hidden %d ', ++$hiddenCount),
+        'shape' => 'box'
+    ]);
+
+    foreach ($neuron->getInputs() as $synapse) {
+        $graph->edge([$synapse->getSource()->getName(), $neuron->getName()], [
+            'penwidth' => min(8, abs($synapse->getWeight())),
+            'label' => round($synapse->getWeight(), 3),
+            'color' => $synapse->getWeight() > 0 ? 'green' : 'red',
+        ]);
+    }
+}
+
+$outputCount = 0;
+
+foreach ($organism->getOutputNeurons() as $neuron) {
+    $graph->node($neuron->getName(), [
+        'label' => sprintf('Output %d ', ++$outputCount),
+        'shape' => 'box'
+    ]);
+
+    foreach ($neuron->getInputs() as $synapse) {
+        $graph->edge([$synapse->getSource()->getName(), $neuron->getName()], [
+            'penwidth' => min(10, abs($synapse->getWeight())),
+            'label' => round($synapse->getWeight(), 3),
+            'color' => $synapse->getWeight() > 0 ? 'green' : 'red',
+        ]);
+    }
+}
+
+file_put_contents(sprintf('build/%s.dot', $name), $graph->render());
+
+exec(sprintf('cat build/%s.dot | dot -Tpng > build/%s.png', $name, $name));
+exec(sprintf('open build/%s.png', $name));
+
+echo sprintf("Saved both build/%s.png and build/%s.dot\n", $name, $name);
