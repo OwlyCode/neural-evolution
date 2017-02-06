@@ -1,0 +1,36 @@
+{
+	"inputs": [{
+		"name": "58950eab1e635",
+		"layer": 0
+	}, {
+		"name": "58950eab1e643",
+		"layer": 0
+	}],
+	"hidden": [{
+		"name": "58950eab1f348",
+		"activation": "sigmoid",
+		"layer": 0.65146173660246,
+		"inputs": [{
+			"weight": -11.047043554041,
+			"source": "58950eab1e635"
+		}, {
+			"weight": -5.092887093822,
+			"source": "58950eab1e643"
+		}]
+	}],
+	"outputs": [{
+		"name": "58950eab1e645",
+		"activation": "sigmoid",
+		"layer": 1,
+		"inputs": [{
+			"weight": 16.004688290881,
+			"source": "58950eab1e643"
+		}, {
+			"weight": 11.992804227393,
+			"source": "58950eab1e635"
+		}, {
+			"weight": -22.807557486374,
+			"source": "58950eab1f348"
+		}]
+	}]
+}

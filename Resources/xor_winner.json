@@ -1,0 +1,72 @@
+{
+	"inputs": [{
+		"name": "5895dfa8ef75c",
+		"layer": 0
+	}, {
+		"name": "5895dfa8ef75f",
+		"layer": 0
+	}],
+	"hidden": [{
+		"name": "5895dfaaa4a3e",
+		"activation": "sigmoid",
+		"layer": 0.04024536211055,
+		"inputs": [{
+			"weight": -6.2125649192429,
+			"source": "5895dfa8ef75f"
+		}]
+	}, {
+		"name": "5895dfabb461a",
+		"activation": "sigmoid",
+		"layer": 0.040948768631066,
+		"inputs": [{
+			"weight": 0.32788325535501,
+			"source": "5895dfa8ef75f"
+		}]
+	}, {
+		"name": "5895dfa9da997",
+		"activation": "sigmoid",
+		"layer": 0.32724807752634,
+		"inputs": [{
+			"weight": 4.5462211009796,
+			"source": "5895dfaaa4a3e"
+		}, {
+			"weight": -1.5594246944224,
+			"source": "5895dfa8ef75c"
+		}]
+	}, {
+		"name": "5895dfa914232",
+		"activation": "sigmoid",
+		"layer": 0.44209073690795,
+		"inputs": [{
+			"weight": -8.0737490780064,
+			"source": "5895dfa8ef75c"
+		}, {
+			"weight": -5.3380513542043,
+			"source": "5895dfa8ef75f"
+		}]
+	}],
+	"outputs": [{
+		"name": "5895dfa8ef74d",
+		"activation": "sigmoid",
+		"layer": 1,
+		"inputs": [{
+			"weight": -7.2781751571587,
+			"source": "5895dfa8ef75c"
+		}, {
+			"weight": -2.2341438626098,
+			"source": "5895dfa8ef75f"
+		}, {
+			"weight": -41.16732408766,
+			"source": "5895dfa914232"
+		}, {
+			"weight": 14.0938395048,
+			"source": "5895dfa9da997"
+		}, {
+			"weight": 0.78686562729388,
+			"source": "5895dfabb461a"
+		}, {
+			"weight": 5.6265420446296,
+			"source": "5895dfaaa4a3e"
+		}]
+	}]
+}

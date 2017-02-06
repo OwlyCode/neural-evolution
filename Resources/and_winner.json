@@ -1,0 +1,44 @@
+{
+	"inputs": [{
+		"name": "5895060388780",
+		"layer": 0
+	}, {
+		"name": "589506038878a",
+		"layer": 0
+	}],
+	"hidden": [{
+		"name": "5895060399fc8",
+		"activation": "sigmoid",
+		"layer": 0.72376297168609,
+		"inputs": [{
+			"weight": -2.4308336025248,
+			"source": "589506038878a"
+		}]
+	}, {
+		"name": "5895060393a70",
+		"activation": "sigmoid",
+		"layer": 0.86227174748772,
+		"inputs": [{
+			"weight": -3.145945590523,
+			"source": "5895060388780"
+		}, {
+			"weight": 8.6634519783144,
+			"source": "5895060399fc8"
+		}]
+	}],
+	"outputs": [{
+		"name": "589506038878d",
+		"activation": "sigmoid",
+		"layer": 1,
+		"inputs": [{
+			"weight": 6.1719093779902,
+			"source": "589506038878a"
+		}, {
+			"weight": -24.803638986686,
+			"source": "5895060393a70"
+		}, {
+			"weight": 8.6605146614185,
+			"source": "5895060388780"
+		}]
+	}]
+}

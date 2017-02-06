@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+
+<?php
+
+include 'vendor/autoload.php';
+
+use OwlyCode\NeuralEvolution\InputNeuron;
+use OwlyCode\NeuralEvolution\Neuron;
+use OwlyCode\NeuralEvolution\Organism;
+use OwlyCode\NeuralEvolution\Specy;
+use OwlyCode\NeuralEvolution\Trial\AndTrial;
+
+$specy = new Specy(new Organism(
+    [new InputNeuron(), new InputNeuron()],
+    [new Neuron("sigmoid")]
+), function ($winner, $score, $generation) {
+    echo sprintf("Generation %d... current score : %d\n", $generation, $score);
+});
+
+$organism = $specy->evolve(new AndTrial());
+
+echo "\n\nWe got a winner !\n";
+echo "1, 1 => " . $organism->stimulate([1, 1])[0] . "\n";
+echo "1, 0 => " . $organism->stimulate([1, 0])[0] . "\n";
+echo "0, 1 => " . $organism->stimulate([0, 1])[0] . "\n";
+echo "0, 0 => " . $organism->stimulate([0, 0])[0] . "\n\n";
+
+echo "Winner genome : " . base64_encode(json_encode($organism->export()));

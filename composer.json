@@ -1,0 +1,15 @@
+{
+    "name": "owlycode/neural-evolution",
+    "type": "library",
+    "authors": [
+        {
+            "name": "OwlyCode",
+            "email": "tmaindron@gmail.com"
+        }
+    ],
+    "target-dir": "OwlyCode\\NeuralEvolution",
+    "autoload": {
+        "psr-4": { "OwlyCode\\NeuralEvolution\\": "src" }
+    },
+    "require": {}
+}
