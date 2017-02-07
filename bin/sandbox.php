@@ -16,7 +16,7 @@ $organism = new Organism(
     [new Neuron("sigmoid")]
 );
 
-$contest = new Contest([$organism], new XorTrial(), 10);
+$contest = new Contest([$organism], new AndTrial(), 10);
 
 $contest->onEachIteration(function (array $organisms, $generation) {
     echo sprintf("Generation %d... Current highest scores : \n", $generation, $organisms[0]->getFitness());
@@ -38,3 +38,9 @@ echo "0, 0 => " . $winner->stimulate([0, 0])[0] . "\n\n";
 
 echo "Winner genome : " . base64_encode(json_encode($winner->export())) . "\n\n";
 echo "Preview it with bin/gen2graph <genome> <name>";
+
+$current = $winner;
+
+while ($current = $current->getAncestor()) {
+    echo base64_encode(json_encode($current->export())) . "\n\n";
+}

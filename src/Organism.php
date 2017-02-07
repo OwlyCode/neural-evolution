@@ -12,11 +12,23 @@ class Organism
 
     private $fitness;
 
+    private $ancestor;
+
     public function __construct(array $inputs, array $outputs, array $hidden = [])
     {
         $this->inputs = $inputs;
         $this->outputs = $outputs;
         $this->hidden = $hidden;
+    }
+
+    public function setAncestor(Organism $ancestor)
+    {
+        $this->ancestor = $ancestor;
+    }
+
+    public function getAncestor()
+    {
+        return $this->ancestor;
     }
 
     public function optimize()
@@ -71,6 +83,7 @@ class Organism
     public function clone()
     {
         $clone = unserialize(serialize($this));
+        $clone->setAncestor($this);
 
         return $clone;
     }
