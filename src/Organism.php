@@ -10,6 +10,8 @@ class Organism
 
     private $hidden;
 
+    private $fitness;
+
     public function __construct(array $inputs, array $outputs, array $hidden = [])
     {
         $this->inputs = $inputs;
@@ -26,6 +28,16 @@ class Organism
         foreach ($this->outputs as $neuron) {
             $neuron->optimize();
         }
+    }
+
+    public function getFitness()
+    {
+        return $this->fitness;
+    }
+
+    public function setFitness($fitness)
+    {
+        $this->fitness = $fitness;
     }
 
     public function export()
@@ -100,19 +112,19 @@ class Organism
         }
     }
 
-    private function getAllNeurons()
+    public function getAllNeurons()
     {
         return array_merge($this->inputs, $this->outputs, $this->hidden);
     }
 
-    private function getPreviousNeurons($layer)
+    public function getPreviousNeurons($layer)
     {
         return array_filter($this->getAllNeurons(), function ($neuron) use ($layer) {
             return $neuron->getLayer() < $layer;
         });
     }
 
-    private function getNextNeurons($layer)
+    public function getNextNeurons($layer)
     {
         return array_filter($this->getAllNeurons(), function ($neuron) use ($layer) {
             return $neuron->getLayer() > $layer;
